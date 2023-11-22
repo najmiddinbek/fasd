@@ -7,22 +7,7 @@ import Prokratura2 from "../../public/Remove-bg.ai_1700556647313.png"
 import Diagramma from "../../components/Diagramma"
 import Chart from "react-apexcharts";
 
-const getTopics = async () => {
-    try {
-        const res = await fetch('/api/topics', {
-            cache: 'no-store',
-        });
-        if (!res.ok) {
-            throw new Error('Mavzular yuklanmadi');
-        }
-
-        return res.json();
-    } catch (error) {
-        console.log('Mavzular yuklanishda xatolik: ', error);
-        return { mavzula: [] };
-    }
-};
-export default function page() {
+export default function SuperAdmin() {
     const [chartData, setChartData] = useState({
         options: {
             chart: {
@@ -44,6 +29,21 @@ export default function page() {
             }
         ]
     });
+    const getTopics = async () => {
+        try {
+            const res = await fetch('/api/topics', {
+                cache: 'no-store',
+            });
+            if (!res.ok) {
+                throw new Error('Mavzular yuklanmadi');
+            }
+
+            return res.json();
+        } catch (error) {
+            console.log('Mavzular yuklanishda xatolik: ', error);
+            return { mavzula: [] };
+        }
+    };
 
     return (
         <>
